@@ -23,6 +23,10 @@
     userStore.handleSingup(userCredentials)
   };
 
+  function handleCancel(){
+    userStore.clearErrorMessage()
+    visible.value = false
+  }
   const title =  props.isLogin ? 'Login' : 'Sign Up' 
   </script>
 
@@ -30,6 +34,10 @@
   <div>
     <AButton type="primary" @click="showModal">{{ title }}</AButton>
     <AModal v-model:visible="visible" :title="title" @ok="handleOk">
+        <template #footer>
+          <AButton key="back" @click="handleCancel">Cancel</AButton>
+          <AButton key="sumbit" type="primary" :loading="loading" @click="handleOk">Sumbit</AButton>
+        </template>
         <aInput class="input" v-if="!isLogin" v-model:value="userCredentials.username" placeholder="Username" />
         <aInput class="input" v-model:value="userCredentials.email" placeholder="Email" />
         <aInput class="input" v-model:value="userCredentials.password" placeholder="Password" />
