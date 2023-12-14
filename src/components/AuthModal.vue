@@ -19,7 +19,7 @@
     visible.value = true;
   };
   
-  const handleOk = (e) => {
+  const handleOk = () => {
     userStore.handleSingup(userCredentials)
   };
 
